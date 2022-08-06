@@ -61,6 +61,176 @@ amazon-comprehend-analytics$ sam build --use-container
 
 The SAM CLI installs dependencies defined in `hello_world/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
+ec2-user:~/environment/amazon-comprehend-serverless-example (main) $ sam build --use-container
+Starting Build inside a container
+Building codeuri: /home/ec2-user/environment/amazon-comprehend-serverless-example/hello_world runtime: python3.7 metadata: {} architecture: x86_64 functions: ['HelloWorldFunction']
+
+Fetching public.ecr.aws/sam/build-python3.7:latest-x86_64 Docker container image..............................................................................................................................................................................................................................................................................................................................................................................................................
+Mounting /home/ec2-user/environment/amazon-comprehend-serverless-example/hello_world as /tmp/samcli/source:ro,delegated inside runtime container
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Invoke Function: sam local invoke
+[*] Deploy: sam deploy --guided
+    
+Running PythonPipBuilder:ResolveDependencies
+Running PythonPipBuilder:CopySource
+
+SAM CLI update available (1.53.0); (1.33.0 installed)
+To download: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
+
+
+ec2-user:~/environment/amazon-comprehend-serverless-example (main) $ sam deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Found
+        Reading default arguments  :  Success
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [amazon-comprehend-analytics]: 
+        AWS Region [us-west-2]: 
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [Y/n]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: 
+        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: 
+Error: Security Constraints Not Satisfied!
+ec2-user:~/environment/amazon-comprehend-serverless-example (main) $ 
+ec2-user:~/environment/amazon-comprehend-serverless-example (main) $ 
+ec2-user:~/environment/amazon-comprehend-serverless-example (main) $ sam deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Found
+        Reading default arguments  :  Success
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [amazon-comprehend-analytics]: 
+        AWS Region [us-west-2]: 
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [Y/n]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: Y
+        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: y
+        Save arguments to configuration file [Y/n]: Y
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
+
+        Looking for resources needed for deployment:
+        Creating the required resources...
+        Successfully created!
+         Managed S3 bucket: aws-sam-cli-managed-default-samclisourcebucket-krtt5we0ii2u
+         A different default S3 bucket can be set in samconfig.toml
+
+        Saved arguments to config file
+        Running 'sam deploy' for future deployments will use the parameters saved above.
+        The above parameters can be changed by modifying samconfig.toml
+        Learn more about samconfig.toml syntax at 
+        https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
+
+Uploading to amazon-comprehend-analytics/30e871217634c4ca9168b7a6a30ec089  464436 / 464436  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : amazon-comprehend-analytics
+        Region                       : us-west-2
+        Confirm changeset            : True
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-krtt5we0ii2u
+        Capabilities                 : ["CAPABILITY_IAM"]
+        Parameter overrides          : {}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+Uploading to amazon-comprehend-analytics/95396d068ec7301e1637209b9820ba1d.template  1149 / 1149  (100.00%)
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------
+Operation                        LogicalResourceId                ResourceType                     Replacement                    
+---------------------------------------------------------------------------------------------------------------------------------
++ Add                            HelloWorldFunctionHelloWorldPe   AWS::Lambda::Permission          N/A                            
+                                 rmissionProd                                                                                     
++ Add                            HelloWorldFunctionRole           AWS::IAM::Role                   N/A                            
++ Add                            HelloWorldFunction               AWS::Lambda::Function            N/A                            
++ Add                            ServerlessRestApiDeployment47f   AWS::ApiGateway::Deployment      N/A                            
+                                 c2d5f9d                                                                                          
++ Add                            ServerlessRestApiProdStage       AWS::ApiGateway::Stage           N/A                            
++ Add                            ServerlessRestApi                AWS::ApiGateway::RestApi         N/A                            
+---------------------------------------------------------------------------------------------------------------------------------
+
+Changeset created successfully. arn:aws:cloudformation:us-west-2:468885651811:changeSet/samcli-deploy1659823763/cabf011f-f4ac-4591-926e-c19f6d4bfe2c
+
+
+Previewing CloudFormation changeset before deployment
+======================================================
+Deploy this changeset? [y/N]: y
+
+2022-08-06 22:09:37 - Waiting for stack create/update to complete
+
+CloudFormation events from changeset
+---------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                   ResourceType                     LogicalResourceId                ResourceStatusReason           
+---------------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS               AWS::IAM::Role                   HelloWorldFunctionRole           -                              
+CREATE_IN_PROGRESS               AWS::IAM::Role                   HelloWorldFunctionRole           Resource creation Initiated    
+CREATE_COMPLETE                  AWS::IAM::Role                   HelloWorldFunctionRole           -                              
+CREATE_IN_PROGRESS               AWS::Lambda::Function            HelloWorldFunction               -                              
+CREATE_IN_PROGRESS               AWS::Lambda::Function            HelloWorldFunction               Resource creation Initiated    
+CREATE_COMPLETE                  AWS::Lambda::Function            HelloWorldFunction               -                              
+CREATE_IN_PROGRESS               AWS::ApiGateway::RestApi         ServerlessRestApi                -                              
+CREATE_IN_PROGRESS               AWS::ApiGateway::RestApi         ServerlessRestApi                Resource creation Initiated    
+CREATE_COMPLETE                  AWS::ApiGateway::RestApi         ServerlessRestApi                -                              
+CREATE_IN_PROGRESS               AWS::Lambda::Permission          HelloWorldFunctionHelloWorldPe   -                              
+                                                                  rmissionProd                                                    
+CREATE_IN_PROGRESS               AWS::ApiGateway::Deployment      ServerlessRestApiDeployment47f   -                              
+                                                                  c2d5f9d                                                         
+CREATE_IN_PROGRESS               AWS::Lambda::Permission          HelloWorldFunctionHelloWorldPe   Resource creation Initiated    
+                                                                  rmissionProd                                                    
+CREATE_IN_PROGRESS               AWS::ApiGateway::Deployment      ServerlessRestApiDeployment47f   Resource creation Initiated    
+                                                                  c2d5f9d                                                         
+CREATE_COMPLETE                  AWS::ApiGateway::Deployment      ServerlessRestApiDeployment47f   -                              
+                                                                  c2d5f9d                                                         
+CREATE_IN_PROGRESS               AWS::ApiGateway::Stage           ServerlessRestApiProdStage       -                              
+CREATE_IN_PROGRESS               AWS::ApiGateway::Stage           ServerlessRestApiProdStage       Resource creation Initiated    
+CREATE_COMPLETE                  AWS::ApiGateway::Stage           ServerlessRestApiProdStage       -                              
+CREATE_COMPLETE                  AWS::Lambda::Permission          HelloWorldFunctionHelloWorldPe   -                              
+                                                                  rmissionProd                                                    
+CREATE_COMPLETE                  AWS::CloudFormation::Stack       amazon-comprehend-analytics      -                              
+---------------------------------------------------------------------------------------------------------------------------------
+
+CloudFormation outputs from deployed stack
+------------------------------------------------------------------------------------------------------------------------------------
+Outputs                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------
+Key                 HelloWorldFunctionIamRole                                                                                      
+Description         Implicit IAM Role created for Hello World function                                                             
+Value               arn:aws:iam::468885651811:role/amazon-comprehend-analytics-HelloWorldFunctionRole-1TEDNHF4PYANW                
+
+Key                 HelloWorldApi                                                                                                  
+Description         API Gateway endpoint URL for Prod stage for Hello World function                                               
+Value               https://pslsbiluo9.execute-api.us-west-2.amazonaws.com/Prod/hello/                                             
+
+Key                 HelloWorldFunction                                                                                             
+Description         Hello World Lambda Function ARN                                                                                
+Value               arn:aws:lambda:us-west-2:468885651811:function:amazon-comprehend-analytics-HelloWorldFunction-MyAaXohvaDCF     
+------------------------------------------------------------------------------------------------------------------------------------
+
+Successfully created/updated stack - amazon-comprehend-analytics in us-west-2
+
+
+
 Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
 
 Run functions locally and invoke them with the `sam local invoke` command.
