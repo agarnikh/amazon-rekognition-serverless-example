@@ -3,7 +3,8 @@ This is an Image detection app that uses Rekognition APIs to detect text in S3 O
 Person need to create the SNS topic manually and add the ARN to src/app.py file
 
 ## Architecture
-![design](https://user-images.githubusercontent.com/108154106/183280020-1897cdad-62a5-430e-8948-15f42a5e05e2.png)
+<img width="593" alt="architecture" src="https://user-images.githubusercontent.com/108154106/183311042-79dea1c1-7f77-42d6-a91b-6b9ce57713a0.png">
+
 
 At a high level, the solution architecture use AWS Rekognition service for image analysis:
 https://aws.amazon.com/rekognition/?p=ft&c=ml&z=3
