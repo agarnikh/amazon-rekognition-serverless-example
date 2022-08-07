@@ -2,12 +2,23 @@
 This is an Image detection app that uses Rekognition APIs to detect text in S3 Objects, stores labels in DynamoDB and sends SNS topic.
 Person need to create the SNS topic manually and add the ARN to src/app.py file
 
-## Requirements
-This code need minimum Python 3.9 version
-
-## Design Diagram
+## Architecture
 ![design](https://user-images.githubusercontent.com/108154106/183280020-1897cdad-62a5-430e-8948-15f42a5e05e2.png)
 
+At a high level, the solution architecture use AWS Comprehend service for image analysis:
+https://aws.amazon.com/comprehend/
+
+Following steps are included:
+1. Sets up an Amazon S3 source and output buckets storing raw expense documents images in png, jpg(jpeg) formats.
+2. Configures an Event Rule based on event pattern in Amazon EventBridge to match incoming S3 PutObject events in the S3 folder containing the raw expense document images.
+3. Configured EventBridge Event Rule sends the event to an AWS Lambda function for futher analysis and processing.
+4. AWS Lambda function reads the images from Amazon S3, calls Amazon Textract AnalyzeExpense API, uses Amazon Textract Response Parser to de-serialize the JSON response and uses Amazon Textract PrettyPrinter to easily print the parsed response and stores the results back to Amazon S3 in different formats.
+
+
+## Prerequisites
+SAM - https://aws.amazon.com/serverless/sam/
+Cloud9 - https://aws.amazon.com/cloud9/
+python 3.9 if using CLI interface 
 
 
 ## Project structure
@@ -18,11 +29,11 @@ Here is a code overview:
 │   ├── __init__.py
 │   └── app.py                  <-- Lambda function code
 ├── template.yaml               <-- SAM template
-└── SampleEvent.json            <-- Sample S3 event
+└── Event.json                  <-- Sample S3 event
 ```
 
 
-
+## Deployment using SAM
 First, we need an `S3 bucket` where we can upload our Lambda functions packaged as ZIP before we deploy anything - If you don't have a S3 bucket to store code artifacts then this is a good time to create one:
 
 ```bash
@@ -62,3 +73,9 @@ sam deploy \
 ## SNS topic manually created
 ![sns](https://user-images.githubusercontent.com/108154106/183280140-ca6c1dba-7d4b-4603-8d92-2a263c7b360f.png)
 
+
+## Clean up
+Deleting the CloudFormation Stack will remove the Lambda functions and other resources created by this solution. 
+
+## License
+This library is licensed under the MIT-0 License. See the LICENSE file.
