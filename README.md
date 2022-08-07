@@ -1,19 +1,19 @@
-# Comprehend serverless Example
+# Rekognition serverless Example
 This is an Image detection app that uses Rekognition APIs to detect text in S3 Objects, stores labels in DynamoDB and sends SNS topic.
 Person need to create the SNS topic manually and add the ARN to src/app.py file
 
 ## Architecture
 ![design](https://user-images.githubusercontent.com/108154106/183280020-1897cdad-62a5-430e-8948-15f42a5e05e2.png)
 
-At a high level, the solution architecture use AWS Comprehend service for image analysis:
-https://aws.amazon.com/comprehend/
+At a high level, the solution architecture use AWS Rekognition service for image analysis:
+https://aws.amazon.com/rekognition/?p=ft&c=ml&z=3
 
 Following steps are included:
-1. Sets up an Amazon S3 source and output buckets storing raw expense documents images in png, jpg(jpeg) formats.
-2. Configures an Event Rule based on event pattern in Amazon EventBridge to match incoming S3 PutObject events in the S3 folder containing the raw expense document images.
-3. Configured EventBridge Event Rule sends the event to an AWS Lambda function for futher analysis and processing.
-4. AWS Lambda function reads the images from Amazon S3, calls Amazon Textract AnalyzeExpense API, uses Amazon Textract Response Parser to de-serialize the JSON response and uses Amazon Textract PrettyPrinter to easily print the parsed response and stores the results back to Amazon S3 in different formats.
-
+1. Sets up an Amazon S3 source bucket to storing image.
+2. Configures S3 event notification rule to auto detect a new image upload and call lambda function.
+3. Call Rekognition API to extract image data
+4. Configure DynamoDB table to store image informatiom
+5. Configure SNS topic and subscribe to receive notification upon retrieving and storing data in DynamoDB.
 
 ## Prerequisites
 SAM - https://aws.amazon.com/serverless/sam/
