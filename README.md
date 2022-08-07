@@ -1,4 +1,4 @@
-# Rekognition serverless Example
+# Rekognition Serverless Example
 This is an Image detection app that uses Rekognition APIs to detect text in S3 Objects, stores labels in DynamoDB and sends SNS topic.
 Person need to create the SNS topic manually and add the ARN to src/app.py file
 
