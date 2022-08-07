@@ -81,5 +81,8 @@ sam deploy \
 Deleting the CloudFormation Stack will remove the Lambda functions and other resources created by this solution. 
 sam delete command can be used to delete stack.
 
+## Additional sample code
+dynamodb_event_reader contains SAM code to deploy DynamoDB table that stream data and check on CloudWatch logs
+
 ## License
 This library is licensed under the MIT-0 License. See the https://github.com/agarnikh/amazon-Rekognition-serverless-example/blob/main/LICENSE file.
