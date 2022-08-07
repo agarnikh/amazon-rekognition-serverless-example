@@ -37,7 +37,8 @@ def lambda_handler(event, context):
     # Get the object from the event.
     bucket = event['Records'][0]['s3']['bucket']['name']
     key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'])
-
+    print();
+    
     try:
         # Call rekognition DetectText API to detect Text in S3 object.
         response = detect_text(bucket, key)
@@ -63,6 +64,15 @@ def lambda_handler(event, context):
         table = boto3.resource('dynamodb').Table(table_name)
         item={'id':key, 'DateTime':timestamp, 'Labels':labels, 'Text':textDetections}
         table.put_item(Item=item)
+        
+        print('Sending SNS Notification!')
+        notification = 'SNS notification for new impage classification in DynamoDB.'
+        client5 = boto3.client('sns')
+        response5 = client5.publish (
+            TargetArn = 'arn:aws:sns:us-west-2:563679696993:ImageDetect',
+            Message = json.dumps({'default': notification}),
+            MessageStructure = 'json'
+        )
 
         return 'Success'
     except Exception as e:

@@ -2,9 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "amazon-comprehend-analytics"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-krtt5we0ii2u"
-s3_prefix = "amazon-comprehend-analytics"
+stack_name = "aws-sam-ocr"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-10azt8hpv229p"
+s3_prefix = "aws-sam-ocr"
 region = "us-west-2"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
