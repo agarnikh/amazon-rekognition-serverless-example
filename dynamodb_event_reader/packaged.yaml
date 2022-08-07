@@ -12,7 +12,7 @@ Resources:
   ReadDynamoDBEvent:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://buckkkkkkk/5bfe42da4def86ffb43b708492d4c80a
+      CodeUri: s3://buckettextrect9998/5bfe42da4def86ffb43b708492d4c80a
       Handler: app.lambda_handler
       Runtime: python3.7
       Events:
