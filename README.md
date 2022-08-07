@@ -7,7 +7,10 @@ Person need to create the SNS topic manually and add the ARN to src/app.py file
 
 
 At a high level, the solution architecture use AWS Rekognition service for image analysis:
-https://aws.amazon.com/rekognition/?p=ft&c=ml&z=3
+https://aws.amazon.com/rekognition/
+https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html
+https://docs.aws.amazon.com/rekognition/latest/dg/images-information.html
+https://docs.aws.amazon.com/rekognition/latest/dg/images-s3.html
 
 Following steps are included:
 1. Sets up an Amazon S3 source bucket to storing image.
