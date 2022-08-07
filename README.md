@@ -82,4 +82,4 @@ Deleting the CloudFormation Stack will remove the Lambda functions and other res
 sam delete command can be used to delete stack.
 
 ## License
-This library is licensed under the MIT-0 License. See the LICENSE file.
+This library is licensed under the MIT-0 License. See the https://github.com/agarnikh/amazon-Rekognition-serverless-example/blob/main/LICENSE file.
