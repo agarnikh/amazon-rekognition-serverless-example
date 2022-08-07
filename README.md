@@ -7,10 +7,9 @@ Person need to create the SNS topic manually and add the ARN to src/app.py file
 
 
 At a high level, the solution architecture use AWS Rekognition service for image analysis:
-https://aws.amazon.com/rekognition/
-https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html
-https://docs.aws.amazon.com/rekognition/latest/dg/images-information.html
-https://docs.aws.amazon.com/rekognition/latest/dg/images-s3.html
+https://aws.amazon.com/rekognition/         
+https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html.          
+https://docs.aws.amazon.com/rekognition/latest/dg/images-information.html.         
 
 Following steps are included:
 1. Sets up an Amazon S3 source bucket to storing image.
@@ -20,8 +19,8 @@ Following steps are included:
 5. Configure SNS topic and subscribe to receive notification upon retrieving and storing data in DynamoDB.
 
 ## Prerequisites
-SAM - https://aws.amazon.com/serverless/sam/
-Cloud9 - https://aws.amazon.com/cloud9/
+SAM - https://aws.amazon.com/serverless/sam/.        
+Cloud9 - https://aws.amazon.com/cloud9/.         
 python 3.9 if using CLI interface 
 
 
