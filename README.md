@@ -1,11 +1,17 @@
-# aws_sam_ocr
-This is an AWS SAM app that uses Rekognition APIs to detect text in S3 Objects and stores labels in DynamoDB.
+# Comprehend serverless Example
+This is an Image detection app that uses Rekognition APIs to detect text in S3 Objects, stores labels in DynamoDB and sends SNS topic.
+Person need to create the SNS topic manually and add the ARN to src/app.py file
+
+## Requirements
+This code need minimum Python 3.9 version
+
+## Design Diagram
+
 
 ## Project structure
-Here is a brief overview of what we have generated for you.
+Here is a code overview:
 ```bash
 .
-├── README.md                   <-- This instructions file
 ├── src                         <-- Source code for the Lambda function
 │   ├── __init__.py
 │   └── app.py                  <-- Lambda function code
@@ -14,15 +20,6 @@ Here is a brief overview of what we have generated for you.
 ```
 
 
-## Requirements
-* AWS CLI
-* [Python 3.6 installed](https://www.python.org/downloads/)
-* [Docker installed](https://www.docker.com/community-edition)
-* [Python Virtual Environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
-
-
-## CLI Commands to package and deploy your application
-CLI commands to package, deploy and describe outputs defined within the cloudformation stack.
 
 First, we need an `S3 bucket` where we can upload our Lambda functions packaged as ZIP before we deploy anything - If you don't have a S3 bucket to store code artifacts then this is a good time to create one:
 
